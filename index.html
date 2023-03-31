@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./views/assets/css/style.css">
+    <title>Jeu de rôle</title>
+</head>
+
+<body>
+    <header>
+        <h1>Création de personnages</h1>
+    </header>
+    <main>
+        <div class="container">
+        <section class="character-creation">
+            <h2>Créer un nouveau personnage</h2>
+            <h3>Identité</h3>
+            <label for="name">Nom</label>
+            <br>
+            <input type="text" id="name" required="required">
+            <br>
+            <label for="classe">Classe</label>
+            <br>
+            <select name="classe" id="class" required="required">
+                <option value="">Choisis la classe de ton personnage</option>
+                <option value="Humain">Humain</option>
+                <option value="Ange">Ange</option>
+                <option value="Démon">Démon</option>
+                <option value="Mage">Mage</option>
+                <option value="Guerrier">Guerrier</option>
+                <option value="Vampire">Vampire</option>
+            </select>
+            <h3>Statistiques</h3>
+            <div class="cut">
+                <div id="cutOne">
+                    <label for="level">Niveau</label>
+                    <input type="number" id="level" required="required">
+                    <label for="health">Santé</label>
+                    <input type="number" id="health" required="required">
+                    <label for="strength">Force</label>
+                    <input type="number" id="strength" required="required">
+                </div>
+                <div id="cutTwo">
+                    <label for="intelligence">Intelligence</label>
+                    <input type="number" id="intelligence" required="required">
+                    <label for="speed">Vitesse</label>
+                    <input type="number" id="speed" required="required">
+                    <label for="defense">Défense</label>
+                    <input type="number" id="defense" required="required">
+                </div>
+            </div>
+            <br>
+            <button id="create-character">Créer</button>
+        </section>
+    </div>
+
+        <h2>Liste des personnages</h2>
+        <section class="containerCharacters">
+        </section>
+    </main>
+</body>
+<script src="./model/CharacterManager.js"></script>
+<script src="./model/Character.js"></script>
+<script src="./controler/main.js"></script>
+
+</html>
