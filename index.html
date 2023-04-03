@@ -15,49 +15,70 @@
     </header>
     <main>
         <div class="container">
-        <section class="character-creation">
-            <h2>Créer un nouveau personnage</h2>
-            <h3>Identité</h3>
-            <label for="name">Nom</label>
-            <br>
-            <input type="text" id="name" required="required">
-            <br>
-            <label for="classe">Classe</label>
-            <br>
-            <select name="classe" id="class" required="required">
-                <option value="">Choisis la classe de ton personnage</option>
-                <option value="Humain">Humain</option>
-                <option value="Ange">Ange</option>
-                <option value="Démon">Démon</option>
-                <option value="Mage">Mage</option>
-                <option value="Guerrier">Guerrier</option>
-                <option value="Vampire">Vampire</option>
-            </select>
-            <h3>Statistiques</h3>
-            <div class="cut">
-                <div id="cutOne">
-                    <label for="level">Niveau</label>
-                    <input type="number" id="level" required="required">
-                    <label for="health">Santé</label>
-                    <input type="number" id="health" required="required">
-                    <label for="strength">Force</label>
-                    <input type="number" id="strength" required="required">
+            <section class="character-creation">
+                <h2>Créer un nouveau personnage</h2>
+                <h3>Identité</h3>
+                <label for="name">Nom</label>
+                <br>
+                <input type="text" id="name" required="required">
+                <br>
+                <label for="classe">Classe</label>
+                <br>
+                <select name="classe" id="class" required="required">
+                    <option value="">Choisis la classe de ton personnage</option>
+                    <option value="Humain">Humain</option>
+                    <option value="Ange">Ange</option>
+                    <option value="Démon">Démon</option>
+                    <option value="Mage">Mage</option>
+                    <option value="Guerrier">Guerrier</option>
+                    <option value="Vampire">Vampire</option>
+                </select>
+                <h3>Statistiques</h3>
+                <div class="cut">
+                    <div id="cutOne">
+                        <label for="level">Niveau</label>
+                        <input type="number" id="level" required="required">
+                        <label for="health">Santé</label>
+                        <input type="number" id="health" required="required">
+                        <label for="strength">Force</label>
+                        <input type="number" id="strength" required="required">
+                    </div>
+                    <div id="cutTwo">
+                        <label for="intelligence">Intelligence</label>
+                        <input type="number" id="intelligence" required="required">
+                        <label for="speed">Vitesse</label>
+                        <input type="number" id="speed" required="required">
+                        <label for="defense">Défense</label>
+                        <input type="number" id="defense" required="required">
+                    </div>
                 </div>
-                <div id="cutTwo">
-                    <label for="intelligence">Intelligence</label>
-                    <input type="number" id="intelligence" required="required">
-                    <label for="speed">Vitesse</label>
-                    <input type="number" id="speed" required="required">
-                    <label for="defense">Défense</label>
-                    <input type="number" id="defense" required="required">
+                <br>
+                <button id="create-character">Créer</button>
+            </section>
+        </div>
+        <div class="listSearch">
+            <h2>Liste des personnages</h2>
+            <div class="allInput">
+            <div class="search">
+                <input type="text" class="search__input" placeholder="Recherche par le nom...">
+                <div class="search__icon">
+                    <ion-icon name="search"></ion-icon>
                 </div>
             </div>
-            <br>
-            <button id="create-character">Créer</button>
-        </section>
-    </div>
-
-        <h2>Liste des personnages</h2>
+            <div class="search">
+                <input type="text" class="search__input" placeholder="Recherche par la classe...">
+                <div class="search__icon">
+                    <ion-icon name="search"></ion-icon>
+                </div>
+            </div>
+            <div class="search">
+                <input type="text" class="search__input" placeholder="Recherche par le niveau...">
+                <div class="search__icon">
+                    <ion-icon name="search"></ion-icon>
+                </div>
+            </div>
+        </div>
+        </div>
         <section class="containerCharacters">
         </section>
     </main>
@@ -65,5 +86,7 @@
 <script src="./model/CharacterManager.js"></script>
 <script src="./model/Character.js"></script>
 <script src="./controler/main.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg .com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
 </html>
