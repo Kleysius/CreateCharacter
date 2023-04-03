@@ -14,5 +14,3 @@ document.querySelector("#create-character").addEventListener('click', () => {
         gameManager.createCharacter(character);
     }, 300);
 })
-
-

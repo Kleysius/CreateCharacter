@@ -15,7 +15,6 @@ class CharacterManager {
             // Card container
             let container = document.createElement("div");
             container.classList.add("card-character");
-            container.id = 'card-'+element.id
             parent.appendChild(container);
             // Card Body
             let containerCard = document.createElement("div");
@@ -57,81 +56,54 @@ class CharacterManager {
             let containerBtn = document.createElement("div");
             containerBtn.classList.add("container-btn");
             containerCard.appendChild(containerBtn);
-            //Bouton modifier
+            // Bouton modifier
             let btnUpdate = document.createElement("button");
             btnUpdate.innerHTML = "Modifier";
             containerBtn.appendChild(btnUpdate);
-            btnUpdate.id='idquinexistepas'
-            btnUpdate.addEventListener('click', (element) => {
-                this.displayModalChar(element);
-            })
+            btnUpdate.addEventListener('click', () => {
+                // Ajouter la transition de rotation à la propriété CSS "transform"
+                containerCard.style.transition = 'transform 1s ease';
+                containerCard.style.transform = 'rotateY(180deg)';
+                // Ajouter un événement "transitionend" pour afficher la fenêtre de modification une fois que la rotation est terminée
+                containerCard.addEventListener('transitionend', () => {
+                    this.displayModalChar(element);
+                    containerCard.style.transition = '';
+                    containerCard.style.transform = '';
+                });
+            });
             // Bouton supprimer
             let btnDelete = document.createElement("button");
             btnDelete.innerHTML = "Supprimer";
             containerBtn.appendChild(btnDelete);
-            btnDelete.addEventListener('click', (element) => {
-                console.log('hhg');
-                this.deleteCharacter(element);
-            })
+            btnDelete.addEventListener('click', () => {
+                let opacity = 1;
+                const intervalId = setInterval(() => {
+                    opacity -= 0.05;
+                    containerCard.style.opacity = opacity;
+                    if (opacity <= 0) {
+                        clearInterval(intervalId);
+                        this.deleteCharacter(element);
+                    }
+                }, 50);
+            });
             containerCard.style.backgroundImage = element.img;
             containerCard.style.backgroundColor = element.backgroundColor;
             containerCard.style.boxShadow = element.boxShadow;
-
-            parent.innerHTML+=  `<section id="form-${element.id}" class="character-creation">
-            <h2>Mofidie ton personnage</h2>
-            <h3>Identité</h3>
-            <label for="name">Nom</label>
-            <br>
-            <input type="text" id="updateName" value=${element.name}>
-            <br>
-            <label for="classe">Classe</label>
-            <br>
-            <select name="classe" id="updateClass" value=${element.classe}>
-                <option value="">Choisis la classe de ton personnage</option>
-                <option value="Humain">Humain</option>
-                <option value="Ange">Ange</option>
-                <option value="Démon">Démon</option>
-                <option value="Mage">Mage</option>
-                <option value="Guerrier">Guerrier</option>
-                <option value="Vampire">Vampire</option>
-            </select>
-            <h3>Statistiques</h3>
-            <div class="cut">
-                <div id="cutOne">
-                    <label for="level">Niveau</label>
-                    <input type="number" id="updateLevel" value=${element.level}>
-                    <label for="health">Santé</label>
-                    <input type="number" id="updateHealth" value=${element.health}>
-                    <label for="strength">Force</label>
-                    <input type="number" id="updateStrength" value=${element.strength}>
-                </div>
-                <div id="cutTwo">
-                    <label for="intelligence">Intelligence</label>
-                    <input type="number" id="updateIntelligence" value=${element.intelligence}>
-                    <label for="speed">Vitesse</label>
-                    <input type="number" id="updateSpeed" value=${element.speed}>
-                    <label for="defense">Défense</label>
-                    <input type="number" id="updateDefense" value=${element.defense}>
-                </div>
-            </div>
-            <br>
-            <button id="updateChar">Valider</button>
-        </section>`
-        document.querySelector('#updateChar').addEventListener('click', () => {
-            let name = document.querySelector("#updateName").value;
-            let classe = document.querySelector("#updateClass").value;
-            let level = document.querySelector("#updateLevel").value;
-            let intelligence = document.querySelector("#updateIntelligence").value;
-            let health = document.querySelector("#updateHealth").value;
-            let speed = document.querySelector("#updateSpeed").value;
-            let strength = document.querySelector("#updateStrength").value;
-            let defense = document.querySelector("#updateDefense").value;
-            const newCharacter = new Character(name, classe, level, intelligence, health, speed, strength, defense);
-            this.updateCharacter(newCharacter, char)
+            containerCard.style.border = element.border;
+            // Effet au survol du curseur
+            container.addEventListener('mousemove', (e) => {
+                const xAxis = (container.offsetWidth / 2 - e.pageX + container.offsetLeft) / 15;
+                const yAxis = (container.offsetHeight / 2 - e.pageY + container.offsetTop) / 15;
+                containerCard.style.transform = "rotateY(" + xAxis + "deg) rotateX(" + yAxis + "deg)";
+            });
+            container.addEventListener('mouseenter', () => {
+                containerCard.style.transition = '0.1s';
+            });
+            container.addEventListener('mouseleave', () => {
+                containerCard.style.transform = 'rotateY(0deg) rotateX(0deg)';
+                containerCard.style.transition = 'all 0.5s ease';
+            });
         })
-        document.querySelector('#form-' + element.id).style.display = "none"
-        })
-       
     }
 
     deleteCharacter(char) {
@@ -147,10 +119,61 @@ class CharacterManager {
     }
 
     displayModalChar(char) {
-        console.log("knesfn");
-      document.querySelector("#form-"+char.id).style.display = "block"
-      document.querySelector("#card-"+char.id).style.display = "none"
-
-     
+        let parent = document.querySelector(".containerCharacters");
+        parent.innerHTML = "";
+        parent.innerHTML = `<section class="character-modify">
+            <h2>Mofidie ton personnage</h2>
+            <h3>Identité</h3>
+            <label for="name">Nom</label>
+            <br>
+            <input type="text" id="updateName" value="${char.name}">
+            <br>
+            <label for="classe">Classe</label>
+            <br>
+            <select name="classe" id="updateClass" value="${char.classe}">
+                <option value="">Choisis la classe de ton personnage</option>
+                <option value="Humain">Humain</option>
+                <option value="Ange">Ange</option>
+                <option value="Démon">Démon</option>
+                <option value="Mage">Mage</option>
+                <option value="Guerrier">Guerrier</option>
+                <option value="Vampire">Vampire</option>
+            </select>
+            <h3>Statistiques</h3>
+            <div class="cut">
+                <div id="cutOne">
+                    <label for="level">Niveau</label>
+                    <input type="number" id="updateLevel" value="${char.level}">
+                    <label for="health">Santé</label>
+                    <input type="number" id="updateHealth" value="${char.health}">
+                    <label for="strength">Force</label>
+                    <input type="number" id="updateStrength" value="${char.strength}">
+                </div>
+                <div id="cutTwo">
+                    <label for="intelligence">Intelligence</label>
+                    <input type="number" id="updateIntelligence" value="${char.intelligence}">
+                    <label for="speed">Vitesse</label>
+                    <input type="number" id="updateSpeed" value="${char.speed}">
+                    <label for="defense">Défense</label>
+                    <input type="number" id="updateDefense" value="${char.defense}">
+                </div>
+            </div>
+            <br>
+            <button id="updateChar">Valider</button>
+        </section>`
+        document.querySelector('#updateChar').addEventListener('click', () => {
+            setTimeout(() => {
+                let name = document.querySelector("#updateName").value;
+                let classe = document.querySelector("#updateClass").value;
+                let level = document.querySelector("#updateLevel").value;
+                let intelligence = document.querySelector("#updateIntelligence").value;
+                let health = document.querySelector("#updateHealth").value;
+                let speed = document.querySelector("#updateSpeed").value;
+                let strength = document.querySelector("#updateStrength").value;
+                let defense = document.querySelector("#updateDefense").value;
+                const newCharacter = new Character(name, classe, level, intelligence, health, speed, strength, defense);
+                this.updateCharacter(newCharacter, char);
+            }, 300);
+        })
     }
 }
