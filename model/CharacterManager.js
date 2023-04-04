@@ -5,13 +5,13 @@ class CharacterManager {
 
     createCharacter(char) {
         this.characters.push(char);
-        this.displayCharacter();
+        this.displayCharacter(this.characters);
     }
 
-    displayCharacter() {
+    displayCharacter(characters) {
         let parent = document.querySelector(".containerCharacters");
         parent.innerHTML = "";
-        this.characters.forEach(element => {
+        characters.forEach(element => {
             // Card container
             let container = document.createElement("div");
             container.classList.add("card-character");
@@ -61,15 +61,7 @@ class CharacterManager {
             btnUpdate.innerHTML = "Modifier";
             containerBtn.appendChild(btnUpdate);
             btnUpdate.addEventListener('click', () => {
-                // Ajouter la transition de rotation à la propriété CSS "transform"
-                containerCard.style.transition = 'transform 1s ease';
-                containerCard.style.transform = 'rotateY(180deg)';
-                // Ajouter un événement "transitionend" pour afficher la fenêtre de modification une fois que la rotation est terminée
-                containerCard.addEventListener('transitionend', () => {
-                    this.displayModalChar(element);
-                    containerCard.style.transition = '';
-                    containerCard.style.transform = '';
-                });
+                    this.displayModalChar(element,container);
             });
             // Bouton supprimer
             let btnDelete = document.createElement("button");
@@ -109,18 +101,17 @@ class CharacterManager {
     deleteCharacter(char) {
         let index = this.characters.indexOf(char);
         this.characters.splice(index, 1);
-        this.displayCharacter();
+        this.displayCharacter(this.characters);
     }
 
     updateCharacter(char, oldChar) {
         let index = this.characters.indexOf(oldChar);
         this.characters[index] = char;
-        this.displayCharacter();
+        this.displayCharacter(this.characters);
     }
 
-    displayModalChar(char) {
-        let parent = document.querySelector(".containerCharacters");
-        parent.innerHTML = "";
+    displayModalChar(char,elem) {
+        let parent = elem;
         parent.innerHTML = `<section class="character-modify">
             <h2>Mofidie ton personnage</h2>
             <h3>Identité</h3>
@@ -175,5 +166,12 @@ class CharacterManager {
                 this.updateCharacter(newCharacter, char);
             }, 300);
         })
+    }
+
+    search(elem){
+        let value = elem.value.toLowerCase();
+        let nameInput = elem.name;
+        let filteredArray = this.characters.filter(element => element[nameInput].toLowerCase() == value);
+        this.displayCharacter(filteredArray);
     }
 }

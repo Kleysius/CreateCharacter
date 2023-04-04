@@ -202,8 +202,6 @@ h2 {
 
 .card-body {
     position: absolute;
-    transition: transform 0.5s ease;
-    transform-style: preserve-3d;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -217,6 +215,7 @@ h2 {
     animation: fadeIn 0.5s ease-in-out;
     backface-visibility: hidden;
 }
+
 
 @keyframes fadeIn {
     0% {
@@ -265,6 +264,7 @@ h2 {
 }
 
 .character-modify {
+    position: absolute;
     background-color: #1b1c20;
     color: #ffffff;
     text-align: center;

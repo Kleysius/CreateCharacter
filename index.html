@@ -59,25 +59,28 @@
         <div class="listSearch">
             <h2>Liste des personnages</h2>
             <div class="allInput">
-            <div class="search">
-                <input type="text" class="search__input" placeholder="Recherche par le nom...">
-                <div class="search__icon">
-                    <ion-icon name="search"></ion-icon>
+                <div class="search">
+                    <input name="name" type="text" class="search__input" placeholder="Recherche par le nom..."
+                        onkeypress="search(event, this)">
+                    <div class="search__icon">
+                        <ion-icon name="search"></ion-icon>
+                    </div>
+                </div>
+                <div class="search">
+                    <input name="classe" type="text" class="search__input" placeholder="Recherche par la classe..."
+                    onkeypress="search(event, this)">
+                    <div class="search__icon">
+                        <ion-icon name="search"></ion-icon>
+                    </div>
+                </div>
+                <div class="search">
+                    <input type="text" name="level" class="search__input" placeholder="Recherche par le niveau..."
+                    onkeypress="search(event, this)">
+                    <div class="search__icon">
+                        <ion-icon name="search"></ion-icon>
+                    </div>
                 </div>
             </div>
-            <div class="search">
-                <input type="text" class="search__input" placeholder="Recherche par la classe...">
-                <div class="search__icon">
-                    <ion-icon name="search"></ion-icon>
-                </div>
-            </div>
-            <div class="search">
-                <input type="text" class="search__input" placeholder="Recherche par le niveau...">
-                <div class="search__icon">
-                    <ion-icon name="search"></ion-icon>
-                </div>
-            </div>
-        </div>
         </div>
         <section class="containerCharacters">
         </section>

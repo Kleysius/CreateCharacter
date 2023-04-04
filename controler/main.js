@@ -14,3 +14,10 @@ document.querySelector("#create-character").addEventListener('click', () => {
         gameManager.createCharacter(character);
     }, 300);
 })
+
+function search(e,elem) {
+    if (e.keyCode == 13 ){
+        gameManager.search(elem)
+    }
+}
+
