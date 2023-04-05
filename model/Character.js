@@ -42,6 +42,9 @@ class Character {
                 this.border = "10px solid #262e46cf";
                 break;
             default:
+                this.img = "url(./views/assets/img/troll.jpg)";
+                this.backgroundColor = "#fff";
+                this.border = "10px solid #000000";
                 break;
         }
     }
