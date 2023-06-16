@@ -327,3 +327,93 @@ h2 {
     cursor: pointer;
     background-color: #ff5722;
 }
+
+/* responsive */
+@media screen and (max-width: 768px) {
+    header h1 {
+        font-size: 24px;
+    }
+
+    .container {
+        height: 100vh;
+        background-image: none;
+    }
+
+    .character-creation {
+        width: 80%;
+    }
+
+    .character-creation h2 {
+        font-size: 24px;
+    }
+
+    .character-creation h3 {
+        font-size: 18px;
+    }
+
+    .character-creation button {
+        padding: 5px 10px;
+    }
+
+    .listSearch h2 {
+        font-size: 24px;
+    }
+
+    .allInput {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .search__input {
+        width: 180px;
+        height: 40px;
+        font-size: 14px;
+        padding-left: 50px;
+        margin-bottom: 5px;
+    }
+
+    .search__icon {
+        font-size: 20px;
+    }
+
+    .card-character {
+        width: 270px;
+        height: 350px;
+    }
+
+    .card-body p {
+        font-size: 14px;
+    }
+
+    .character-modify {
+        width: 270px;
+        height: 355px;
+    }
+
+    .character-modify h2 {
+        font-size: 20px;
+        padding-top: 5px;
+    }
+
+    .character-modify h3 {
+        font-size: 16px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        border-bottom: 1px solid #f44336;
+        border-top: 1px solid #f44336;
+    }
+
+    .character-modify label {
+        font-size: 12px;
+    }
+
+    .character-modify input,
+    .character-modify select {
+        font-size: 12px;
+    }
+
+    .character-modify button {
+        padding: 5px 10px;
+        font-size: 14px;
+    }
+}
